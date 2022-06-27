@@ -64,6 +64,7 @@ export function createDraftData(dk: any) {
     playerName = playerName.replace('Pittman Jr.', 'Pittman');
     playerName = playerName.replace('Robinson II', 'Robinson');
     playerName = playerName.replace('DK Metcalf', 'D.K. Metcalf');
+    playerName = playerName.replace('Eli Mitchell', 'Elijah Mitchell');
     console.log(playerName);
     const appearanceId = allPlayersUd["result"].filter(
       (item: any) => `${item["first_name"]} ${item["last_name"]}` == playerName
