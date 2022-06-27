@@ -1,0 +1,269 @@
+{
+    "draft": {
+        "id": "23c2752c-b054-4c04-949a-e0320132c5eb",
+        "auto_pick_at": "2022-06-24T04:26:56Z",
+        "clock": 28800,
+        "contest_style_id": "9e62863e-1b29-53e8-8aca-2aae06aaac5f",
+        "draft_at": "2022-06-19T23:59:01Z",
+        "draft_entries": [
+            {
+                "id": "ac457050-0548-4172-bf80-15262c06d190",
+                "auto_pick": "off",
+                "payout": null,
+                "payout_text": null,
+                "pick_order": 3,
+                "place": null,
+                "points": null,
+                "share_link": null,
+                "title": null,
+                "user_id": "16841e0c-9e2e-4085-9b5c-15e7b828b1a1"
+            },
+            {
+                "id": "22cdc7c8-ead4-4290-9280-08d2cf46769a",
+                "auto_pick": "off",
+                "payout": null,
+                "payout_text": null,
+                "pick_order": 4,
+                "place": null,
+                "points": null,
+                "share_link": null,
+                "title": null,
+                "user_id": "272102be-6655-4d22-a752-a38b71f4d10f"
+            },
+            {
+                "id": "c9e1f0fe-ab84-4e5c-a5f8-933801ecbb7a",
+                "auto_pick": "off",
+                "payout": null,
+                "payout_text": null,
+                "pick_order": 11,
+                "place": null,
+                "points": null,
+                "share_link": null,
+                "title": null,
+                "user_id": "6de70837-dedf-4518-9e12-8ef3ee169779"
+            },
+            {
+                "id": "400f1c7d-2153-491a-b258-3a27c6f2a11b",
+                "auto_pick": "off",
+                "payout": null,
+                "payout_text": null,
+                "pick_order": 12,
+                "place": null,
+                "points": null,
+                "share_link": null,
+                "title": null,
+                "user_id": "89960221-7423-49ba-a107-36e841bd9bfe"
+            },
+            {
+                "id": "8c18be8b-f487-491c-8f0e-fe3144be04ec",
+                "auto_pick": "off",
+                "payout": null,
+                "payout_text": null,
+                "pick_order": 9,
+                "place": null,
+                "points": null,
+                "share_link": null,
+                "title": null,
+                "user_id": "ab0cb645-ba83-4a6f-85ea-0678b9e6534d"
+            },
+            {
+                "id": "ed4189d3-96fc-4862-a991-8bdb0206dd16",
+                "auto_pick": "off",
+                "payout": null,
+                "payout_text": null,
+                "pick_order": 1,
+                "place": null,
+                "points": null,
+                "share_link": null,
+                "title": null,
+                "user_id": "b1954b86-2c0c-4142-96f2-5405ae7a2614"
+            },
+            {
+                "id": "0e0cf37a-2967-4871-acf9-16332ef44a16",
+                "auto_pick": "off",
+                "payout": null,
+                "payout_text": null,
+                "pick_order": 8,
+                "place": null,
+                "points": null,
+                "share_link": null,
+                "title": null,
+                "user_id": "cd2b6e04-2051-469c-81d8-3cb73fecc403"
+            },
+            {
+                "id": "7855526c-aee5-4c57-8939-32bee01e897e",
+                "auto_pick": "off",
+                "payout": null,
+                "payout_text": null,
+                "pick_order": 10,
+                "place": null,
+                "points": null,
+                "share_link": null,
+                "title": null,
+                "user_id": "ce156623-9345-4d86-ae85-dc12ef0079e9"
+            },
+            {
+                "id": "53a42320-e906-4acf-bb96-937fd86f5fab",
+                "auto_pick": "off",
+                "payout": null,
+                "payout_text": null,
+                "pick_order": 6,
+                "place": null,
+                "points": null,
+                "share_link": null,
+                "title": null,
+                "user_id": "d02f95a0-e3ae-4246-9bb7-818c466669bb"
+            },
+            {
+                "id": "4c02de24-ed2a-48b2-b140-f05b48b509b0",
+                "auto_pick": "off",
+                "payout": null,
+                "payout_text": null,
+                "pick_order": 7,
+                "place": null,
+                "points": null,
+                "share_link": null,
+                "title": null,
+                "user_id": "e2d9dee3-5493-40f9-9532-636cb01dd2aa"
+            },
+            {
+                "id": "ddbd0b34-aca3-4fb8-b9f0-df0c70523a25",
+                "auto_pick": "off",
+                "payout": null,
+                "payout_text": null,
+                "pick_order": 5,
+                "place": null,
+                "points": null,
+                "share_link": null,
+                "title": null,
+                "user_id": "ea12ac1b-cd13-4911-a293-1609e03a499b"
+            },
+            {
+                "id": "ce78710d-c6da-4a9d-956f-19d3b8b594c9",
+                "auto_pick": "off",
+                "payout": null,
+                "payout_text": null,
+                "pick_order": 2,
+                "place": null,
+                "points": null,
+                "share_link": null,
+                "title": null,
+                "user_id": "f51d336f-67e5-4126-83b2-6878ac0cfb99"
+            }
+        ],
+        "entry_count": 12,
+        "entry_role": null,
+        "entry_style_id": "d2a60780-2e9a-47d3-b4f7-b55a34837953",
+        "picks": [
+        ],
+        "slate_id": "f659a9be-fd34-4a1e-9c43-0816267e603d",
+        "source": "tournament",
+        "source_entry_style_id": "2b3e3f43-9314-42ea-b4c5-b64494cad135",
+        "status": "drafting",
+        "title": "Best Ball Mania III",
+        "users": [
+            {
+                "id": "16841e0c-9e2e-4085-9b5c-15e7b828b1a1",
+                "badges": [],
+                "profile_color": "#E57E23",
+                "profile_icon_url": "https://assets.underdogfantasy.com/profile-icons/poodle.png",
+                "username": ""
+            },
+            {
+                "id": "272102be-6655-4d22-a752-a38b71f4d10f",
+                "badges": [],
+                "profile_color": "#1660C7",
+                "profile_icon_url": "https://assets.underdogfantasy.com/profile-icons/boxer.png",
+                "username": ""
+            },
+            {
+                "id": "6de70837-dedf-4518-9e12-8ef3ee169779",
+                "badges": [],
+                "profile_color": "#D3BD8D",
+                "profile_icon_url": "https://assets.underdogfantasy.com/profile-icons/golden_helmet.png",
+                "username": ""
+            },
+            {
+                "id": "89960221-7423-49ba-a107-36e841bd9bfe",
+                "badges": [],
+                "profile_color": "#D3BD8D",
+                "profile_icon_url": "https://assets.underdogfantasy.com/profile-icons/dachshund.png",
+                "username": ""
+            },
+            {
+                "id": "ab0cb645-ba83-4a6f-85ea-0678b9e6534d",
+                "badges": [
+                    {
+                        "title": "Experienced",
+                        "light_mode_url": "https://assets.underdogfantasy.com/badges/expert_1_light_mode.png",
+                        "dark_mode_url": "https://assets.underdogfantasy.com/badges/expert_1_dark_mode.png"
+                    }
+                ],
+                "profile_color": "#C60B30",
+                "profile_icon_url": "https://assets.underdogfantasy.com/profile-icons/yorkie_reindeer.png",
+                "username": ""
+            },
+            {
+                "id": "b1954b86-2c0c-4142-96f2-5405ae7a2614",
+                "badges": [],
+                "profile_color": "#0285CB",
+                "profile_icon_url": "https://assets.underdogfantasy.com/profile-icons/yorkie.png",
+                "username": ""
+            },
+            {
+                "id": "cd2b6e04-2051-469c-81d8-3cb73fecc403",
+                "badges": [],
+                "profile_color": "#1660C7",
+                "profile_icon_url": "https://assets.underdogfantasy.com/profile-icons/german.png",
+                "username": ""
+            },
+            {
+                "id": "ce156623-9345-4d86-ae85-dc12ef0079e9",
+                "badges": [],
+                "profile_color": "#C60B30",
+                "profile_icon_url": "https://assets.underdogfantasy.com/profile-icons/german.png",
+                "username": ""
+            },
+            {
+                "id": "d02f95a0-e3ae-4246-9bb7-818c466669bb",
+                "badges": [],
+                "profile_color": "#0285CB",
+                "profile_icon_url": "https://assets.underdogfantasy.com/profile-icons/lab.png",
+                "username": ""
+            },
+            {
+                "id": "e2d9dee3-5493-40f9-9532-636cb01dd2aa",
+                "badges": [
+                    {
+                        "title": "Highly Experienced",
+                        "light_mode_url": "https://assets.underdogfantasy.com/badges/expert_2_light_mode.png",
+                        "dark_mode_url": "https://assets.underdogfantasy.com/badges/expert_2_dark_mode.png"
+                    }
+                ],
+                "profile_color": "#6CBE45",
+                "profile_icon_url": "https://assets.underdogfantasy.com/profile-icons/spotted_hound_goat.png",
+                "username": ""
+            },
+            {
+                "id": "ea12ac1b-cd13-4911-a293-1609e03a499b",
+                "badges": [
+                    {
+                        "title": "Experienced",
+                        "light_mode_url": "https://assets.underdogfantasy.com/badges/expert_1_light_mode.png",
+                        "dark_mode_url": "https://assets.underdogfantasy.com/badges/expert_1_dark_mode.png"
+                    }
+                ],
+                "profile_color": "#18987E",
+                "profile_icon_url": "https://assets.underdogfantasy.com/profile-icons/german.png",
+                "username": ""
+            },
+            {
+                "id": "f51d336f-67e5-4126-83b2-6878ac0cfb99",
+                "badges": [],
+                "profile_color": "#1660C7",
+                "profile_icon_url": "https://assets.underdogfantasy.com/profile-icons/poodle.png",
+                "username": ""
+            }
+        ]
+    }
+}
