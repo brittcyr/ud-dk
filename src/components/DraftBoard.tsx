@@ -90,6 +90,8 @@ function DraftBoard(props: {allPlayers: any, draftData: any}) {
               <div className="styles__numberCell__YH9Zo">16</div>
               <div className="styles__numberCell__YH9Zo">17</div>
               <div className="styles__numberCell__YH9Zo">18</div>
+              <div className="styles__numberCell__YH9Zo">19</div>
+              <div className="styles__numberCell__YH9Zo">20</div>
             </div>
 
             {Array(12)
@@ -133,7 +135,7 @@ function DraftBoard(props: {allPlayers: any, draftData: any}) {
                           ></div>
                         </div>
                       </div>
-                      {Array(18)
+                      {Array(20)
                         .fill(0)
                         .map((_, j) => {
                           return playerSquare(j, i);
