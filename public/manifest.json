@@ -2,16 +2,21 @@
   "name": "DK Underdog",
   "description": "DK Underdog",
   "version": "1.0",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "icons": {
     "16": "logo192.png",
     "48": "logo192.png",
     "128": "logo192.png"
   },
   "content_scripts": [{ "js": [ "content.js"], "matches": [ "<all_urls>"]}],
-  "background": { "scripts": ["background.js"]},
-  "permissions": ["tabs", "activeTab", "*://draftkings.com/*"],
-  "web_accessible_resources": ["*.html"],
-  "content_security_policy": "script-src 'self' 'sha256-/13BBW2yQVtpCsBV7JiO23y7pwEFFUobOzefJ27Nltg='; object-src 'self'",
-  "browser_action": {}
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["tabs", "activeTab"],
+  "host_permissions": ["*://draftkings.com/*"],
+  "action": {},
+  "web_accessible_resources": [{
+    "resources": ["index.html"],
+    "matches": ["<all_urls>"]
+  }]
 }

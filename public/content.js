@@ -24,7 +24,7 @@ position: fixed; box-shadow: 0px 12px 48px rgba(29, 5, 64, 0.32);
   const dialog = document.querySelector("dialog");
   dialog.showModal();
   const iframe = document.getElementById("popup-content");
-  iframe.src = chrome.extension.getURL("index.html");
+  iframe.src = chrome.runtime.getURL("index.html");
   iframe.frameBorder = 0;
   dialog.querySelector("button").addEventListener("click", () => {
     dialog.close();
