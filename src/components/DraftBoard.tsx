@@ -179,13 +179,12 @@ function DraftBoard(props: { allPlayers: any; draftData: any }) {
                     ).toString() + "%",
                 };
                 const avatar = {
-                  backgroundImage: `url("${sortedUsers[i]["avatarUrl"]}")`
-                }
+                  backgroundImage: `url("${sortedUsers[i]["avatarUrl"]}")`,
+                };
                 return (
                   <>
                     <div className="styles__draftEntryColumn__BSGIr">
                       <div className="styles__userHeader__skiAD ">
-
                         <div className="styles__avatarWrapper__FpsdV ">
                           <div className="styles__avatar__eBZ_K styles__avatar__vwikS">
                             <div

@@ -17,6 +17,16 @@ function DraftBar(props: any) {
     return userName;
   }
 
+  function draftEntryIdToAvatarUrl(draft_entry_id: any) {
+    const userId = draftData["draft"]["draft_entries"].filter(
+      (item: any) => item["id"] == draft_entry_id
+    )[0]["user_id"];
+    const avatar = draftData["draft"]["users"].filter(
+      (item: any) => item["id"] == userId
+    )[0]["avatarUrl"];
+    return avatar;
+  }
+
   function pickToPlayer(pick: any) {
     // @ts-ignore
     const playerAndAppearance = allPlayers["result"].filter(
@@ -41,13 +51,18 @@ function DraftBar(props: any) {
                 const player = pickToPlayer(pick);
                 // @ts-ignore
                 const positionColor = colorMap[player["position"]];
+                const avatar = {
+                  backgroundImage: `url("${draftEntryIdToAvatarUrl(picks[i]["draft_entry_id"])}")`,
+                };
                 return (
                   <button className="styles__draftingCell__pD1pn  styles__draftingCell__Q8fFL ">
                     <div className="styles__topHalf__HMGmg">
                       <div className="styles__avatarWrap__hBCpr">
                         <div className="styles__avatarWrapper__FpsdV ">
                           <div className="styles__avatar__eBZ_K styles__avatar__gwiTX ">
-                            <div className="styles__imageContainer__LyNue"></div>
+                            <div className="styles__imageContainer__LyNue"
+                              style={avatar}>
+                            </div>
                           </div>
                         </div>
                         <p className="styles__username__McRvJ">
