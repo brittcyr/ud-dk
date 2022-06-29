@@ -28,6 +28,7 @@ export function createDraftData(dk: any) {
         */
     const draftEntryId = user["userKey"];
     const userId = user["displayName"];
+    const avatarUrl = user["avatarUrl"];
     const pickOrder = dk["draftBoard"].filter(
       (item: any) => item["userKey"] == draftEntryId
     )[0]["selectionNumber"];
@@ -36,7 +37,7 @@ export function createDraftData(dk: any) {
       user_id: userId,
       pick_order: pickOrder,
     });
-    draftDataDk["draft"]["users"].push({ id: userId, username: userId });
+    draftDataDk["draft"]["users"].push({ id: userId, username: userId, avatarUrl: avatarUrl });
   }
 
   draftDataDk["draft"]["picks"] = [];

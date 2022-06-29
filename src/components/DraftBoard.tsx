@@ -1,8 +1,17 @@
-import { borderColorMap, colorMap, qbColor, rbColor, teColor, wrColor } from "./styles";
+import {
+  borderColorMap,
+  colorMap,
+  qbColor,
+  rbColor,
+  teColor,
+  wrColor,
+} from "./styles";
 
-function DraftBoard(props: {allPlayers: any, draftData: any}) {
-  const {draftData, allPlayers} = props;
+function DraftBoard(props: { allPlayers: any; draftData: any }) {
+  const { draftData, allPlayers } = props;
   const picks = draftData["draft"]["picks"];
+  console.log(draftData);
+  console.log(picks);
 
   function userIdToPickNumber(user_id: any) {
     return draftData["draft"]["draft_entries"].filter(
@@ -20,6 +29,34 @@ function DraftBoard(props: {allPlayers: any, draftData: any}) {
       (item: any) => item["id"] == pick["appearance_id"]
     )[0];
     return playerAndAppearance;
+  }
+
+  function getPositionsByDrafter() {
+    let result = {
+      0: { QB: 0, RB: 0, WR: 0, TE: 0 },
+      1: { QB: 0, RB: 0, WR: 0, TE: 0 },
+      2: { QB: 0, RB: 0, WR: 0, TE: 0 },
+      3: { QB: 0, RB: 0, WR: 0, TE: 0 },
+      4: { QB: 0, RB: 0, WR: 0, TE: 0 },
+      5: { QB: 0, RB: 0, WR: 0, TE: 0 },
+      6: { QB: 0, RB: 0, WR: 0, TE: 0 },
+      7: { QB: 0, RB: 0, WR: 0, TE: 0 },
+      8: { QB: 0, RB: 0, WR: 0, TE: 0 },
+      9: { QB: 0, RB: 0, WR: 0, TE: 0 },
+      10: { QB: 0, RB: 0, WR: 0, TE: 0 },
+      11: { QB: 0, RB: 0, WR: 0, TE: 0 },
+    };
+
+    for (let i = 0; i < picks.length; ++i) {
+      const round = Math.floor(i / 12);
+      const roundPickNum = round % 2 == 0 ? i % 12 : 11 - (i % 12);
+      const player = pickToPlayer(picks[i]);
+      const position = player["position"];
+      const drafterId = roundPickNum;
+      // @ts-ignore
+      result[drafterId][position] = result[drafterId][position] + 1;
+    }
+    return result;
   }
 
   function playerSquare(row: number, col: number) {
@@ -41,7 +78,19 @@ function DraftBoard(props: {allPlayers: any, draftData: any}) {
           </p>
           <p className="styles__pickName__C9yTC">{player["first_name"]}</p>
           <p className="styles__pickName__C9yTC">{player["last_name"]}</p>
-          <p className="styles__subText__mP1hK">{`${player["position"]} - ${player["team_name"]} \(${row + 1}.${roundPickNum + 1}\)`}</p>
+          <p className="styles__subText__mP1hK">{`${player["position"]} - ${
+            player["team_name"]
+          } \(${row + 1}.${roundPickNum + 1}\)`}</p>
+        </div>
+      );
+    }
+    if (picks.length + 1 == rowColToPickNumber(row, col)) {
+      return (
+        <div className="styles__draftBoardCell__sa6ku  styles__onTheClock__vnkJ0">
+          <p className="styles__cellNumberBar__l7j9R">
+            {rowColToPickNumber(row, col)}
+          </p>
+          <p className="styles__pickName__C9yTC">On the clock</p>
         </div>
       );
     }
@@ -97,10 +146,55 @@ function DraftBoard(props: {allPlayers: any, draftData: any}) {
             {Array(12)
               .fill(0)
               .map((_, i) => {
+                // @ts-ignore
+                const amountPositionByDrafter = getPositionsByDrafter()[i];
+                const numPicks =
+                  amountPositionByDrafter["QB"] +
+                  amountPositionByDrafter["RB"] +
+                  amountPositionByDrafter["WR"] +
+                  amountPositionByDrafter["TE"] +
+                  0.001;
+                const qbWidth = {
+                  width:
+                    Math.floor(
+                      (100 * amountPositionByDrafter["QB"]) / numPicks
+                    ).toString() + "%",
+                };
+                const rbWidth = {
+                  width:
+                    Math.floor(
+                      (100 * amountPositionByDrafter["RB"]) / numPicks
+                    ).toString() + "%",
+                };
+                const wrWidth = {
+                  width:
+                    Math.floor(
+                      (100 * amountPositionByDrafter["WR"]) / numPicks
+                    ).toString() + "%",
+                };
+                const teWidth = {
+                  width:
+                    Math.floor(
+                      (100 * amountPositionByDrafter["TE"]) / numPicks
+                    ).toString() + "%",
+                };
+                const avatar = {
+                  backgroundImage: `url("${sortedUsers[i]["avatarUrl"]}")`
+                }
                 return (
                   <>
                     <div className="styles__draftEntryColumn__BSGIr">
                       <div className="styles__userHeader__skiAD ">
+
+                        <div className="styles__avatarWrapper__FpsdV ">
+                          <div className="styles__avatar__eBZ_K styles__avatar__vwikS">
+                            <div
+                              className="styles__imageContainer__LyNue"
+                              style={avatar}
+                            ></div>
+                          </div>
+                        </div>
+
                         <p className="styles__username__TyKpx">
                           {sortedUsers[i]["username"]}
                         </p>
@@ -109,28 +203,28 @@ function DraftBoard(props: {allPlayers: any, draftData: any}) {
                             className="styles__bar__ey6Lw"
                             style={{
                               ...qbColor,
-                              ...{ width: "100%" },
+                              ...qbWidth,
                             }}
                           ></div>
                           <div
                             className="styles__bar__ey6Lw"
                             style={{
                               ...rbColor,
-                              ...{ width: "100%" },
+                              ...rbWidth,
                             }}
                           ></div>
                           <div
                             className="styles__bar__ey6Lw"
                             style={{
                               ...wrColor,
-                              ...{ width: "100%" },
+                              ...wrWidth,
                             }}
                           ></div>
                           <div
                             className="styles__bar__ey6Lw"
                             style={{
                               ...teColor,
-                              ...{ width: "100%" },
+                              ...teWidth,
                             }}
                           ></div>
                         </div>
