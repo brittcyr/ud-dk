@@ -37,7 +37,11 @@ export function createDraftData(dk: any) {
       user_id: userId,
       pick_order: pickOrder,
     });
-    draftDataDk["draft"]["users"].push({ id: userId, username: userId, avatarUrl: avatarUrl });
+    draftDataDk["draft"]["users"].push({
+      id: userId,
+      username: userId,
+      avatarUrl: avatarUrl,
+    });
   }
 
   draftDataDk["draft"]["picks"] = [];
@@ -62,15 +66,50 @@ export function createDraftData(dk: any) {
       (item: any) => item["playerId"] == playerId
     )[0]["displayName"];
 
-    playerName = playerName.replace('Pittman Jr.', 'Pittman');
-    playerName = playerName.replace('Robinson II', 'Robinson');
-    playerName = playerName.replace('DK Metcalf', 'D.K. Metcalf');
-    playerName = playerName.replace('Eli Mitchell', 'Elijah Mitchell');
-    console.log(playerName);
-    const appearanceId = allPlayersUd["result"].filter(
-      (item: any) => `${item["first_name"]} ${item["last_name"]}` == playerName
-    )[0]["appearance_id"];
-    return appearanceId;
+    playerName = playerName.replace("Pittman Jr.", "Pittman");
+    playerName = playerName.replace("Robinson II", "Robinson");
+    playerName = playerName.replace("DK Metcalf", "D.K. Metcalf");
+    playerName = playerName.replace("Eli Mitchell", "Elijah Mitchell");
+    playerName = playerName.replace("Melvin Gordon III", "Melvin Gordon");
+    playerName = playerName.replace("Ronald Jones II", "Ronald Jones");
+    playerName = playerName.replace(
+      "Darrell Henderson Jr.",
+      "Darrell Henderson"
+    );
+    playerName = playerName.replace("Irv Smith Jr.", "Irv Smith");
+    playerName = playerName.replace("DJ Chark Jr.", "D.J. Chark");
+    playerName = playerName.replace("Marvin Jones Jr.", "Marvin Jones");
+    playerName = playerName.replace("Kenneth Walker", "Ken Walker");
+    playerName = playerName.replace("Odell Beckham Jr.", "Odell Beckham");
+    playerName = playerName.replace("Brian Robinson Jr.", "Brian Robinson");
+    playerName = playerName.replace("Robbie Anderson", "Robby Anderson");
+    playerName = playerName.replace("Mitch Trubisky", "Mitchell Trubisky");
+    playerName = playerName.replace("Will Fuller", "William Fuller");
+    let appearanceId;
+    try {
+      appearanceId = allPlayersUd["result"].filter(
+        (item: any) =>
+          `${item["first_name"]} ${item["last_name"]}` == playerName
+      )[0]["appearance_id"];
+      return appearanceId;
+    } catch (err) {}
+    playerName = playerName.replace(" Jr.", "");
+    playerName = playerName.replace(" III", "");
+    playerName = playerName.replace(" II", "");
+    playerName = playerName.replace(" IV", "");
+    playerName = playerName.replace(" V", "");
+    playerName = playerName.replace(" Sr.", "");
+    playerName = playerName.replace(".", "");
+    try {
+      appearanceId = allPlayersUd["result"].filter(
+        (item: any) =>
+          `${item["first_name"]} ${item["last_name"]}` == playerName
+      )[0]["appearance_id"];
+      return appearanceId;
+    } catch (err) {
+      console.log(playerName);
+      return "67646aeb-2ee8-4bcd-8e56-0f92372905ea";
+    }
   }
 
   for (const pick of dk["draftBoard"]) {

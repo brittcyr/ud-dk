@@ -48,6 +48,7 @@ function PlayerTable(props: {
   }, [selectedIndex]);
 
   function renderRow({ index, key, style }) {
+    // TODO: Make the star cause a post to https://api.draftkings.com/drafts/v1/snake/128152822/entries/3271977959/draftPreferences/queue/players?format=json
     return (
       <div
         tabIndex={0}
