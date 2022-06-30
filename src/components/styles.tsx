@@ -54,3 +54,8 @@ export const borderColorMap = {
     'WR': wrBorderColor,
     'TE': teBorderColor,
 };
+
+export const notSelected = {
+  backgroundColor: "rgb(216, 216, 216)",
+  color: "rgb(107, 107, 107)"
+}

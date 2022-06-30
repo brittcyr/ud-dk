@@ -5,6 +5,7 @@ import PlayerCard from "./PlayerCard";
 import { List } from "react-virtualized";
 import EmptyStar from "./EmptyStar";
 import QueuedStar from "./QueuedStar";
+import PositionSelector from "./PositionSelector";
 import DownArrow from "./DownArrow";
 import NewsIcon from "./NewsIcon";
 import { colorMap } from "./styles";
@@ -17,9 +18,20 @@ function PlayerTable(props: {
   playersData: any;
   queuePlayer: any;
   unqueuePlayer;
+  filterPosition: any;
+  unfilterPosition;
+  useFilter: any;
 }) {
-  const { playersData, queuePlayer, unqueuePlayer } = props;
+  const {
+    playersData,
+    queuePlayer,
+    unqueuePlayer,
+    filterPosition,
+    unfilterPosition,
+    useFilter,
+  } = props;
   const [selectedIndex, setSelectedIndex] = React.useState(-1);
+  const [reloadTable, setReloadTable] = React.useState(false);
   const tableRef = useRef();
   const resetSelectedIndex = () => {
     setSelectedIndex(-1);
@@ -32,23 +44,28 @@ function PlayerTable(props: {
   }
 
   function rowHeight({ index }): number {
+    if (playersData["result"][index]["displayed"] == "0") {
+      return 0;
+    }
     if (index == selectedIndex) {
       let height = 482;
       if (playersData["result"][index]["stats_table"]["rows"].length > 2) {
         height += 28;
       }
       return height;
-      //return 482;
     }
     return defaultRowHeight;
   }
 
   useEffect(() => {
     tableRef.current.recomputeRowHeights();
-  }, [selectedIndex]);
+  }, [selectedIndex, reloadTable]);
 
   function renderRow({ index, key, style }) {
     // TODO: Make the star cause a post to https://api.draftkings.com/drafts/v1/snake/128152822/entries/3271977959/draftPreferences/queue/players?format=json
+    if (playersData["result"][index]["displayed"] == "0") {
+      return <></>;
+    }
     return (
       <div
         tabIndex={0}
@@ -116,16 +133,31 @@ function PlayerTable(props: {
   }
 
   return (
-    <List
-      width={rowWidth}
-      height={listHeight}
-      rowHeight={rowHeight}
-      rowRenderer={renderRow}
-      rowCount={playersData["result"].length}
-      estimatedRowSize={defaultRowHeight}
-      overscanRowCount={3}
-      ref={tableRef}
-    />
+    <div className="styles__playerListWrapper__QrdGw">
+      {useFilter ? (
+        <div className="styles__filterComponent__sEIAe">
+          <PositionSelector
+            players={playersData["result"]}
+            filterPosition={filterPosition}
+            unfilterPosition={unfilterPosition}
+            reloadTable={reloadTable}
+            setReloadTable={setReloadTable}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
+      <List
+        width={rowWidth}
+        height={listHeight}
+        rowHeight={rowHeight}
+        rowRenderer={renderRow}
+        rowCount={playersData["result"].length}
+        estimatedRowSize={defaultRowHeight}
+        overscanRowCount={3}
+        ref={tableRef}
+      />
+    </div>
   );
 }
 

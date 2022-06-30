@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import PlayerSearch from "./components/PlayerSearch";
 import PlayerTable from "./components/PlayerTable";
 import Queue from "./components/Queue";
 import DraftedTable from "./components/DraftedTable";
-import PositionSelector from "./components/PositionSelector";
 import DraftBar from "./components/DraftBar";
 import DraftBoard from "./components/DraftBoard";
 
@@ -17,7 +15,7 @@ import { createDraftData } from "./components/createDraftData";
 function App() {
   const [draftablePlayers, setDraftablePlayers] = useState(allPlayers);
   const [queuedPlayers, setQueuedPlayers] = useState({ result: [] });
-  const [draftDataDk, setDraftDataDk] = useState( draftData );
+  const [draftDataDk, setDraftDataDk] = useState(draftData);
 
   function queuePlayer(player: any) {
     // @ts-ignore
@@ -35,6 +33,32 @@ function App() {
     );
     // @ts-ignore
     draftablePlayers["result"][objIndex]["is_queued"] = "1";
+    setDraftablePlayers(draftablePlayers);
+  }
+
+  function filterPosition(position: any) {
+    // @ts-ignore
+    for (let i = 0; i < draftablePlayers["result"].length; i++) {
+    // @ts-ignore
+      if (draftablePlayers["result"][i]["position"] == position) {
+    // @ts-ignore
+        draftablePlayers["result"][i]["displayed"] = "0";
+      }
+    }
+    // @ts-ignore
+    setDraftablePlayers(draftablePlayers);
+  }
+
+  function unfilterPosition(position: any) {
+    // @ts-ignore
+    for (let i = 0; i < draftablePlayers["result"].length; i++) {
+    // @ts-ignore
+      if (draftablePlayers["result"][i]["position"] == position) {
+    // @ts-ignore
+        draftablePlayers["result"][i]["displayed"] = "1";
+      }
+    }
+    // @ts-ignore
     setDraftablePlayers(draftablePlayers);
   }
 
@@ -58,52 +82,65 @@ function App() {
     setDraftablePlayers(draftablePlayers);
   }
 
-  const [myUserName, setMyUserName] = useState('');
-  const [contestId, setContestId] = useState('');
+  const [myUserName, setMyUserName] = useState("");
+  const [contestId, setContestId] = useState("");
   useEffect(() => {
     const queryInfo = { active: true, lastFocusedWindow: true };
     chrome.tabs &&
       chrome.tabs.query(queryInfo, (tabs) => {
         const url = tabs[0].url;
-        const split_url = url?.split('/');
+        const split_url = url?.split("/");
 
         // @ts-ignore
         setContestId(split_url[split_url.length - 1]);
       });
 
-    fetch('https://api.draftkings.com/sites/US-DK/dashes/v1/dashes/siteNav/users/me.json?format=json').then(r => r.text()).then(result => {
-      // @ts-ignore
-      setMyUserName(JSON.parse(result)["userName"]);
-    });
-
+    fetch(
+      "https://api.draftkings.com/sites/US-DK/dashes/v1/dashes/siteNav/users/me.json?format=json"
+    )
+      .then((r) => r.text())
+      .then((result) => {
+        // @ts-ignore
+        setMyUserName(JSON.parse(result)["userName"]);
+      });
   }, []);
 
-  const [entryId, setEntryId] = useState('');
+  const [entryId, setEntryId] = useState("");
 
   useEffect(() => {
     if (!myUserName) {
       return;
     }
-    fetch(`https://api.draftkings.com/contests/v1/users/${myUserName}?format=json`).then(r => r.text()).then(result => {
-      // @ts-ignore
-      setEntryId(
-        JSON.parse(result)["userProfile"]["enteredContests"].filter(
-          (item: any) => item["contestKey"] == contestId)[0]["entryKey"]
-      )});
+    fetch(
+      `https://api.draftkings.com/contests/v1/users/${myUserName}?format=json`
+    )
+      .then((r) => r.text())
+      .then((result) => {
+        // @ts-ignore
+        setEntryId(
+          JSON.parse(result)["userProfile"]["enteredContests"].filter(
+            (item: any) => item["contestKey"] == contestId
+          )[0]["entryKey"]
+        );
+      });
   }, [myUserName]);
 
   useEffect(() => {
     if (!contestId || !entryId) {
       return;
     }
-    fetch(`https://api.draftkings.com/drafts/v1/${contestId}/entries/${entryId}/draftStatus?format=json`).then(r => r.text()).then(result => {
-      // @ts-ignore
-      setDraftDataDk(createDraftData(JSON.parse(result)));
-    });
+    fetch(
+      `https://api.draftkings.com/drafts/v1/${contestId}/entries/${entryId}/draftStatus?format=json`
+    )
+      .then((r) => r.text())
+      .then((result) => {
+        // @ts-ignore
+        setDraftDataDk(createDraftData(JSON.parse(result)));
+      });
   }, [entryId]);
 
   useEffect(() => {
-      // @ts-ignore
+    // @ts-ignore
     let draftablePlayersResult = draftablePlayers["result"];
     if (!draftablePlayersResult) {
       return;
@@ -112,32 +149,29 @@ function App() {
     for (const pick of draftDataDk["draft"]["picks"]) {
       // @ts-ignore
       draftablePlayersResult = draftablePlayersResult.filter(
-          (item: any) => item["appearance_id"] != pick["appearance_id"]);
+        (item: any) => item["appearance_id"] != pick["appearance_id"]
+      );
     }
-    setDraftablePlayers({result: draftablePlayersResult});
-
+    setDraftablePlayers({ result: draftablePlayersResult });
   }, [draftDataDk]);
 
   return (
     <div className="theme--light">
-      <DraftBoard  draftData={draftDataDk} allPlayers={allPlayers} />
+      <DraftBoard draftData={draftDataDk} allPlayers={allPlayers} />
       <div className="styles__draftPage__YSqmm">
-        <DraftBar  draftData={draftDataDk} allPlayers={allPlayers} />
+        <DraftBar draftData={draftDataDk} allPlayers={allPlayers} />
         <div className="styles__leftCol__TveLw">
           <div className="styles__columnTitle__KwHbQ">
             <h2 className="styles__title__MAX_v">Players</h2>
           </div>
-          <div className="styles__playerListWrapper__QrdGw">
-            <div className="styles__filterComponent__sEIAe">
-              <PlayerSearch />
-              <PositionSelector />
-            </div>
-            <PlayerTable
-              playersData={draftablePlayers}
-              queuePlayer={queuePlayer}
-              unqueuePlayer={unqueuePlayer}
-            />
-          </div>
+          <PlayerTable
+            playersData={draftablePlayers}
+            queuePlayer={queuePlayer}
+            unqueuePlayer={unqueuePlayer}
+            filterPosition={filterPosition}
+            unfilterPosition={unfilterPosition}
+            useFilter={true}
+          />
         </div>
 
         <div className="styles__centerCol__w8Dvf">

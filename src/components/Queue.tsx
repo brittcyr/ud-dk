@@ -18,7 +18,7 @@ function Queue(props: { playersData: any, unqueuePlayer: any }) {
         </div>
       </div>
       {playersData["result"].length > 0 ? (
-        <PlayerTable playersData={playersData} unqueuePlayer={unqueuePlayer} />
+        <PlayerTable playersData={playersData} unqueuePlayer={unqueuePlayer} useFilter={false}/>
       ) : (
         <EmptyQueue />
       )}
