@@ -61,14 +61,10 @@ export function createDraftData(dk: any) {
         },
     */
 
-  function dkIdToUDId(playerId: any) {
-    let playerName = dk["playerPool"]["draftablePlayers"].filter(
-      (item: any) => item["playerId"] == playerId
-    )[0]["displayName"];
-
+  function cleanName(name: string) {
+    let playerName = name;
     playerName = playerName.replace("Pittman Jr.", "Pittman");
     playerName = playerName.replace("Robinson II", "Robinson");
-    playerName = playerName.replace("DK Metcalf", "D.K. Metcalf");
     playerName = playerName.replace("Eli Mitchell", "Elijah Mitchell");
     playerName = playerName.replace("Melvin Gordon III", "Melvin Gordon");
     playerName = playerName.replace("Ronald Jones II", "Ronald Jones");
@@ -85,14 +81,6 @@ export function createDraftData(dk: any) {
     playerName = playerName.replace("Robbie Anderson", "Robby Anderson");
     playerName = playerName.replace("Mitch Trubisky", "Mitchell Trubisky");
     playerName = playerName.replace("Will Fuller", "William Fuller");
-    let appearanceId;
-    try {
-      appearanceId = allPlayersUd["result"].filter(
-        (item: any) =>
-          `${item["first_name"]} ${item["last_name"]}` == playerName
-      )[0]["appearance_id"];
-      return appearanceId;
-    } catch (err) {}
     playerName = playerName.replace(" Jr.", "");
     playerName = playerName.replace(" III", "");
     playerName = playerName.replace(" II", "");
@@ -100,6 +88,42 @@ export function createDraftData(dk: any) {
     playerName = playerName.replace(" V", "");
     playerName = playerName.replace(" Sr.", "");
     playerName = playerName.replace(".", "");
+    playerName = playerName.replace(".", "");
+    playerName = playerName.replace("DK Metcalf", "D.K. Metcalf");
+    playerName = playerName.replace("AJ Brown", "A.J. Brown");
+    playerName = playerName.replace("TJ Hockenson", "T.J. Hockenson");
+    playerName = playerName.replace("JK Dobbins", "J.K. Dobbins");
+    playerName = playerName.replace("Amon-Ra St Brown", "Amon-Ra St. Brown");
+    playerName = playerName.replace("Marquezaldes-Scantling", "Marquez Valdes-Scantling");
+    return playerName;
+  }
+
+
+  function udIdToDkId(udId: any) {
+      const udPlayer = allPlayersUd["result"].filter(
+        (item: any) => item["appearance_id"] == udId
+      )[0];
+      let playerName = `${udPlayer.first_name} ${udPlayer.last_name}`
+      playerName = cleanName(playerName);
+
+    try {
+      const dkId = dk["playerPool"]["draftablePlayers"].filter(
+        (item: any) => cleanName(item['displayName']) == playerName
+      )[0]["playerId"];
+      return dkId;
+    } catch (err) {
+      return "123456789";
+    }
+  }
+
+
+  function dkIdToUDId(playerId: any) {
+    let playerName = dk["playerPool"]["draftablePlayers"].filter(
+      (item: any) => item["playerId"] == playerId
+    )[0]["displayName"];
+
+    playerName = cleanName(playerName);
+    let appearanceId;
     try {
       appearanceId = allPlayersUd["result"].filter(
         (item: any) =>
@@ -111,6 +135,7 @@ export function createDraftData(dk: any) {
       return "67646aeb-2ee8-4bcd-8e56-0f92372905ea";
     }
   }
+
 
   for (const pick of dk["draftBoard"]) {
     if (!pick["playerId"]) {
@@ -125,6 +150,14 @@ export function createDraftData(dk: any) {
       number: number,
     });
   }
+
+  // TODO: Store this to a local json file and just read it so dont need to reconstruct.
+  draftDataDk["udToDkId"] = {};
+  /*
+  for (const player of allPlayersUd["result"]) {
+    draftDataDk["udToDkId"][player["appearance_id"]] = udIdToDkId(player["appearance_id"]);
+  }
+  */
 
   return draftDataDk;
 }

@@ -21,14 +21,34 @@ TODO: Consider doing this to override parent
   },
 */
 
+/*
+function draftPlayer(player, entryId, dk) {
+  fetch(
+    `https://api.draftkings.com/drafts/v1/entries/${entryId}/selections?format=json`
+    , {
+      credentials: 'include',
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({mimeType: 'application/json', text: `{"entryId": "${entryId}", "playerId": ${dk["udToDkId"][player["id"]]}}`})
+    }
+  )
+    .then((r) => r.text())
+}
+*/
+
 // @ts-ignore
 function PlayerCard(props: {
   index: number;
   resetSelectedIndex: () => void;
   player: any;
   queuePlayer: any;
+  dk: any;
+  entryId: any;
 }) {
-  const { index, resetSelectedIndex, player, queuePlayer, unqueuePlayer } = props;
+  const { index, resetSelectedIndex, player, queuePlayer, unqueuePlayer, dk, entryId } = props;
   const handleResetSelectedIndex = () => {
     resetSelectedIndex();
   };
@@ -175,7 +195,6 @@ function PlayerCard(props: {
                 <p>Remove</p>
               </button>
             )}
-
             <button className="styles__draftActionPlayerCard__wkdgw styles__notDrafting__kymew">
               <i className="styles__icon__DijND styles__iconNotDrafting__ek6nE">
                 <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">

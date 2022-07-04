@@ -83,7 +83,21 @@ function App() {
   }
 
   const [myUserName, setMyUserName] = useState("");
+  const [nextDrafter, setNextDrafter] = useState("");
   const [contestId, setContestId] = useState("");
+
+  function getNextDrafter(draftData: any) {
+    const nextUserKey = draftData["draftBoard"].filter(
+      (item: any) => item["playerId"] == undefined
+    )[0]["userKey"];
+
+    const username = draftData["users"].filter(
+      (item: any) => item["userKey"] == nextUserKey
+    )[0]["displayName"];
+
+    return username;
+  }
+
   useEffect(() => {
     const queryInfo = { active: true, lastFocusedWindow: true };
     chrome.tabs &&
@@ -136,6 +150,7 @@ function App() {
       .then((result) => {
         // @ts-ignore
         setDraftDataDk(createDraftData(JSON.parse(result)));
+        setNextDrafter(getNextDrafter(JSON.parse(result)));
       });
   }, [entryId]);
 
@@ -165,6 +180,8 @@ function App() {
             <h2 className="styles__title__MAX_v">Players</h2>
           </div>
           <PlayerTable
+            dk={draftDataDk}
+            entryId={entryId}
             playersData={draftablePlayers}
             queuePlayer={queuePlayer}
             unqueuePlayer={unqueuePlayer}
@@ -175,7 +192,7 @@ function App() {
         </div>
 
         <div className="styles__centerCol__w8Dvf">
-          <Queue playersData={queuedPlayers} unqueuePlayer={unqueuePlayer} />
+          <Queue playersData={queuedPlayers} entryId={entryId} unqueuePlayer={unqueuePlayer} dk={draftDataDk} />
         </div>
         <div className="styles__rightCol__nh76d">
           <DraftedTable draftData={draftDataDk} allPlayers={allPlayers} />

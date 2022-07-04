@@ -10,8 +10,6 @@ import {
 function DraftBoard(props: { allPlayers: any; draftData: any }) {
   const { draftData, allPlayers } = props;
   const picks = draftData["draft"]["picks"];
-  console.log(draftData);
-  console.log(picks);
 
   function userIdToPickNumber(user_id: any) {
     return draftData["draft"]["draft_entries"].filter(

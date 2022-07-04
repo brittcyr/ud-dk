@@ -6,8 +6,8 @@ import PlayerTable from "./PlayerTable";
 import { List } from "react-virtualized";
 import EmptyQueue from "./EmptyQueue";
 
-function Queue(props: { playersData: any, unqueuePlayer: any }) {
-  const { playersData, unqueuePlayer } = props;
+function Queue(props: { playersData: any, unqueuePlayer: any, dk: any, entryId: any }) {
+  const { playersData, unqueuePlayer, dk, entryId } = props;
 
   return (
     <>
@@ -18,7 +18,7 @@ function Queue(props: { playersData: any, unqueuePlayer: any }) {
         </div>
       </div>
       {playersData["result"].length > 0 ? (
-        <PlayerTable playersData={playersData} unqueuePlayer={unqueuePlayer} useFilter={false}/>
+        <PlayerTable playersData={playersData} unqueuePlayer={unqueuePlayer} dk={dk} entryId={entryId} useFilter={false}/>
       ) : (
         <EmptyQueue />
       )}

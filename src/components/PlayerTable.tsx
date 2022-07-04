@@ -21,6 +21,8 @@ function PlayerTable(props: {
   filterPosition: any;
   unfilterPosition;
   useFilter: any;
+  dk: any;
+  entryId: any;
 }) {
   const {
     playersData,
@@ -29,6 +31,8 @@ function PlayerTable(props: {
     filterPosition,
     unfilterPosition,
     useFilter,
+    dk,
+    entryId,
   } = props;
   const [selectedIndex, setSelectedIndex] = React.useState(-1);
   const [reloadTable, setReloadTable] = React.useState(false);
@@ -81,9 +85,11 @@ function PlayerTable(props: {
             <PlayerCard
               index={index}
               resetSelectedIndex={resetSelectedIndex}
+              dk={dk}
               player={playersData["result"][index]}
               queuePlayer={queuePlayer}
               unqueuePlayer={unqueuePlayer}
+              entryId={entryId}
             />
           ) : (
             <>
