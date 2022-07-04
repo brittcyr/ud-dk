@@ -1,5 +1,9 @@
 # Chrome extension to use a Underdog UI on a DK bestball
 
+Demo
+- https://youtu.be/-mii7ycmzMw
+
 Key missing features:
-- Making picks
+- Submitting picks
 - Saving the queue
+
