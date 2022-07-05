@@ -143,6 +143,13 @@ function App() {
     if (!contestId || !entryId) {
       return;
     }
+    fetchData();
+    setInterval(function() {
+      fetchData();
+    }, 5000);
+  }, [entryId]);
+
+  function fetchData() {
     fetch(
       `https://api.draftkings.com/drafts/v1/${contestId}/entries/${entryId}/draftStatus?format=json`
     )
@@ -152,7 +159,7 @@ function App() {
         setDraftDataDk(createDraftData(JSON.parse(result)));
         setNextDrafter(getNextDrafter(JSON.parse(result)));
       });
-  }, [entryId]);
+  }
 
   useEffect(() => {
     // @ts-ignore
